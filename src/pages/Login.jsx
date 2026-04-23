@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import assets from "../assets/assets";
 import { checkValidData } from "../utils/utils";
 import { auth } from "../utils/firebaseConfigue";
@@ -6,52 +6,63 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
-
+  const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const user = useSelector((store) => store.user.user);
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
-  const handleformSubmit = (e) => {
+  const from = location.state?.from?.pathname || "/browse";
+
+  useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+    }
+  }, [user, navigate, from]);
+
+  const handleformSubmit = async (e) => {
     e.preventDefault();
 
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+
+    if (!email || !password) {
+      setErrorMessage("Please fill all fields");
+      return;
+    }
+
     const message = checkValidData(emailRef, passwordRef);
-    setErrorMessage(message);
 
-    if (message) return;
+    if (message) {
+      setErrorMessage(message);
+      return;
+    }
 
-    if (!isSignIn) {
-      createUserWithEmailAndPassword(
-        auth,
-        emailRef.current.value,
-        passwordRef.current.value,
-      )
-        .then((userCredential) => {
-          // Signed up
-          const user = userCredential.user;
-          // ...
-        })
-        .catch((error) => {
-          setErrorMessage(error.message);
-          // ..
-        });
-    } else {
-      signInWithEmailAndPassword(
-        auth,
-        emailRef.current.value,
-        passwordRef.current.value,
-      )
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          // ...
-        })
-        .catch((error) => {
-          setErrorMessage(error.message);
-        });
+    setLoading(true);
+
+    try {
+      if (!isSignIn) {
+        await createUserWithEmailAndPassword(auth, email, password);
+      } else {
+        await signInWithEmailAndPassword(auth, email, password);
+      }
+
+      navigate(from, { replace: true });
+    } catch (error) {
+      const msg = error.message.replace("Firebase: ", "");
+      setErrorMessage(msg);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -88,7 +99,7 @@ const Login = () => {
           className="w-full bg-gray-700 p-3 rounded outline-none max-sm:text-sm"
         />
 
-        <p className="text-red-500 text-sm">{errorMessage}</p>
+        {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
 
         <button
           className="w-full bg-red-600 py-3 rounded font-semibold
