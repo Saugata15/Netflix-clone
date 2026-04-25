@@ -1,9 +1,13 @@
-const Browse = () => {
-  return (
-    <div className="relative h-screen">
-        <div className="absolute inset-0 bg-black/70"></div>
-    </div>
-  )
-}
+import MainContainer from "../components/MainContainer";
+import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 
-export default Browse
+const Browse = () => {
+  useNowPlayingMovies();
+  return (
+    <div className="text-white">
+      <MainContainer />
+    </div>
+  );
+};
+
+export default Browse;
