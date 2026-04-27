@@ -11,7 +11,7 @@ const MainContainer = () => {
   const { original_title, overview, id } = mainMovie;
 
   return (
-    <div className="relative h-[75vh] sm:h-[85vh] lg:h-screen">
+    <div className="relative h-screen sm:h-screen lg:h-[120vh]">
       <VideoTitle title={original_title} description={overview} />
       <VideoBackground movieId={mainMovie.id} />
     </div>

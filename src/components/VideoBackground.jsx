@@ -12,9 +12,9 @@ const VideoBackground = ({ movieId }) => {
     <div className="absolute inset-0 -z-10 overflow-hidden">
       
       <div
-        className="absolute top-1/2 left-1/2
+        className="absolute top-1/2 left-1/2 lg:scale-200 scale-150 sm:scale-200
       max-sm:w-[177.78vh] sm:w-full max-sm:h-[100vh] h-full
-      min-w-full sm:min-h-full sm:h-[56.25vw] md:w-[120%] md:h-full lg:w-full lg:h-[56.25vw]
+      min-w-full sm:min-h-full sm:h-[100vh] md:w-[120%] md:h-[100vh] lg:h-[100vh] lg:w-full 
       -translate-x-1/2 -translate-y-1/2"
       >
         <iframe
