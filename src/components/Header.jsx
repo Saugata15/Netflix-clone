@@ -3,11 +3,18 @@ import assets from "../assets/assets";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebaseConfigue";
+import { SUPPORTED_LANGUAGES } from "../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { changeLanguage } from "../store/LanguageSlice";
 
 const Header = () => {
   const [showBg, setShowBg] = useState(false);
+  const currentLanguage = useSelector(
+    (store) => store.language.currentLanguage,
+  );
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const isLoginPage =
     location.pathname === "/" || location.pathname === "/login";
@@ -38,6 +45,14 @@ const Header = () => {
   const navLinkClass = ({ isActive }) =>
     `font-semibold hover:text-white transition
     ${isActive ? "text-white" : "text-[#e5e5e5] hover:text-white"}`;
+
+  const handleSearch = () => {
+    navigate("/search");
+  };
+
+  const handleLanguage = (e) => {
+    dispatch(changeLanguage(e.target.value));
+  };
 
   return (
     <header
@@ -73,22 +88,49 @@ const Header = () => {
             <NavLink to={"/mylist"} className={navLinkClass}>
               My List
             </NavLink>
-            <NavLink to={"/browsebylanguages"} className={navLinkClass}>
-              Browse by Languages
-            </NavLink>
           </nav>
         )}
       </div>
 
       {!isLoginPage && (
         <div className="flex items-center gap-4">
+          <div className="relative">
+            <select
+              className="appearance-none bg-[#1a1a1a] border border-gray-600 text-white 
+            text-sm font-semibold rounded-md pl-4 pr-7 py-2 cursor-pointer
+            outline-none hover:border-gray-400 transition-all duration-300"
+              onChange={handleLanguage}
+              value={currentLanguage}
+            >
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option
+                  key={lang.identifier}
+                  value={lang.identifier}
+                  className="bg-[#1a1a1a] text-white"
+                >
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+
+            {/* Custom Arrow */}
+            <span
+              className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 
+              text-xs text-gray-300"
+            >
+              ▼
+            </span>
+          </div>
+
           <img
             src={assets.search}
             alt="search-icon"
             className="cursor-pointer w-4"
+            onClick={handleSearch}
           />
+
           <div className="relative group">
-            <div className="flex items-center gap-2.5 cursor-pointer">
+            <div className="flex items-center gap-2 cursor-pointer">
               <img
                 src={assets.userIcon}
                 alt="user-icon"
@@ -97,7 +139,7 @@ const Header = () => {
               <img
                 src={assets.caret}
                 alt="arrow-down"
-                className="w-2.5 transition-transform duration-300 group-hover:rotate-180"
+                className="w-3 transition-transform duration-300 group-hover:rotate-180"
               />
             </div>
             <div className="absolute top-full right-0 h-3 w-full"></div>

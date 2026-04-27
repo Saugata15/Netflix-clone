@@ -3,6 +3,7 @@ import App from "../App";
 import Login from "../pages/Login";
 import Browse from "../pages/Browse";
 import ProtectedRoute from "../components/ProtectedRoute";
+import Search from "../pages/Search";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Browse />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "search",
+        element: (
+          <ProtectedRoute>
+            <Search />
           </ProtectedRoute>
         ),
       },
