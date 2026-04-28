@@ -6,6 +6,7 @@ import { auth } from "../utils/firebaseConfigue";
 import { SUPPORTED_LANGUAGES } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { changeLanguage } from "../store/LanguageSlice";
+import languageConstants from "../utils/languageConstants";
 
 const Header = () => {
   const [showBg, setShowBg] = useState(false);
@@ -15,6 +16,8 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
+
+  const text = languageConstants[currentLanguage];
 
   const isLoginPage =
     location.pathname === "/" || location.pathname === "/login";
@@ -70,23 +73,20 @@ const Header = () => {
 
         {!isLoginPage && (
           <nav className="flex items-center lg:gap-5 gap-3 max-md:hidden">
-            <NavLink to={"/"} className={navLinkClass}>
-              Home
+            <NavLink to={"/browse"} className={navLinkClass}>
+              {text.home}
             </NavLink>
             <NavLink to={"/shows"} className={navLinkClass}>
-              Shows
+              {text.shows}
             </NavLink>
             <NavLink to={"/movies"} className={navLinkClass}>
-              Movies
-            </NavLink>
-            <NavLink to={"/games"} className={navLinkClass}>
-              Games
+              {text.movies}
             </NavLink>
             <NavLink to={"/new&popular"} className={navLinkClass}>
-              New & Popular
+              {text.newPopular}
             </NavLink>
             <NavLink to={"/mylist"} className={navLinkClass}>
-              My List
+              {text.myList}
             </NavLink>
           </nav>
         )}
@@ -153,7 +153,7 @@ const Header = () => {
                 onClick={handleSignOut}
                 className="text-sm text-white hover:underline whitespace-nowrap cursor-pointer"
               >
-                Sign out of Netflix
+                {text.signOutNetflix}
               </button>
             </div>
           </div>

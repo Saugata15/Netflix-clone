@@ -26,7 +26,7 @@ const MovieList = ({ title, movies }) => {
       {/* Left Arrow */}
       <button
         onClick={() => scroll("left")}
-        className="absolute left-0 top-27 -translate-y-1/2 z-20
+        className="absolute left-0 top-40 -translate-y-1/2 z-20
          text-white  opacity-0
         group-hover:opacity-100 transition hidden md:flex"
       >
@@ -36,7 +36,7 @@ const MovieList = ({ title, movies }) => {
       {/* Right Arrow */}
       <button
         onClick={() => scroll("right")}
-        className="absolute right-0 top-27 -translate-y-1/2 z-20
+        className="absolute right-0 top-40 -translate-y-1/2 z-20
          text-white opacity-0
         group-hover:opacity-100 transition hidden md:flex"
       >

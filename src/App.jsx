@@ -5,6 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./utils/firebaseConfigue";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../src/store/userSlice";
+import Footer from "./components/Footer";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const App = () => {
     <div>
       <Header />
       <Outlet />
+      <Footer/>
     </div>
   );
 };

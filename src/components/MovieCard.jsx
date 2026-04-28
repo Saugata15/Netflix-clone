@@ -1,13 +1,13 @@
 import { IMG_CDN_URL } from "../utils/constants";
 
 const MovieCard = ({ movieItem }) => {
-  if (!movieItem?.backdrop_path && !movieItem?.poster_path) return null;
+  if (!movieItem?.poster_path) return null;
 
-  const imagePath = movieItem.backdrop_path || movieItem.poster_path;
+  const imagePath = movieItem.poster_path;
 
   return (
     <div
-      className="w-36 sm:w-40 md:w-48 lg:w-56 shrink-0
+      className="w-36 sm:w-40 md:w-48 lg:w-38 shrink-0
         rounded-md overflow-hidden cursor-pointer"
     >
       <img

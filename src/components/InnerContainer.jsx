@@ -1,20 +1,21 @@
-import React from 'react'
+import React from "react";
 import { useSelector } from "react-redux";
 import MovieList from "./MovieList";
+import languageConstants from "../utils/languageConstants";
 
 const InnerContainer = () => {
-    const movies = useSelector((store) => store.movies);
-    console.log(movies);
+  const movies = useSelector((store) => store.movies);
+  const langKey = useSelector((store) => store.language.currentLanguage);
+  const text = languageConstants[langKey];
 
   return (
     <div className="bg-black px-6 md:px-16 py-8 flex flex-col">
-        <MovieList title="Now Playing" movies={movies.nowPlayingMoviesList} />
-        <MovieList title="Popular Movies" movies={movies.popularMoviesList} />
-        <MovieList title="Top Rated Movies" movies={movies.topRatedMoviesList} />
-        <MovieList title="Upcoming Movies" movies={movies.upComingMoviesList} />
+      <MovieList title={text.trending} movies={movies.nowPlayingMoviesList} />
+      <MovieList title={text.popular} movies={movies.popularMoviesList} />
+      <MovieList title={text.topRated} movies={movies.topRatedMoviesList} />
+      <MovieList title={text.upcoming} movies={movies.upComingMoviesList} />
     </div>
   );
-}
+};
 
-export default InnerContainer
-
+export default InnerContainer;
