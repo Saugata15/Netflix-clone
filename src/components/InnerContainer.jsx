@@ -13,7 +13,13 @@ const InnerContainer = () => {
       <MovieList title={text.trending} movies={movies.nowPlayingMoviesList} />
       <MovieList title={text.popular} movies={movies.popularMoviesList} />
       <MovieList title={text.topRated} movies={movies.topRatedMoviesList} />
+      <MovieList title={text.action} movies={movies.actionMoviesList} />
+      <MovieList title={text.comedy} movies={movies.comedyMoviesList} />
       <MovieList title={text.upcoming} movies={movies.upComingMoviesList} />
+      <MovieList title={text.popularShows} movies={movies.popularTvShows} />
+      <MovieList title={text.topRatedShows} movies={movies.topRatedTvShows} />
+      <MovieList title={text.airingToday} movies={movies.airingTodayTvShows} />
+      <MovieList title={text.onTheAir} movies={movies.onTheAirTvShows} />
     </div>
   );
 };

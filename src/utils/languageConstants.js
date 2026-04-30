@@ -12,10 +12,16 @@ const languageConstants = {
         noResults: (query) => `No results found for "${query}"`,
 
         // Browse Page
-        trending: "Trending Now",
-        popular: "Popular",
-        topRated: "Top Rated",
-        upcoming: "Upcoming",
+        trending: "Trending Now Movies",
+        popular: "Popular Movies",
+        topRated: "Top Rated Movies",
+        upcoming: "Upcoming Movies",
+        action: "Action Movies",
+        comedy: "Comedy Movies",
+        popularShows: "Popular Shows",
+        topRatedShows: "Top Rated Shows",
+        airingToday: "Airing Today",
+        onTheAir: "On The Air",
 
         // Header
         home: "Home",
@@ -35,6 +41,10 @@ const languageConstants = {
         contactUs: "Contact Us",
         footerTitle: "Netflix Clone By Saugata Das (Frontend Developer)",
         footerSubtitle: "Built for learning purposes only.",
+
+        // Banner
+        play: "Play",
+        moreInfo: "More Info",
     },
 
     hindi: {
@@ -50,10 +60,16 @@ const languageConstants = {
         noResults: (query) => `"${query}" के लिए कोई परिणाम नहीं मिला`,
 
         // Browse Page
-        trending: "ट्रेंडिंग",
-        popular: "लोकप्रिय",
-        topRated: "टॉप रेटेड",
-        upcoming: "जल्द आ रहा है",
+        trending: "ट्रेंडिंग फिल्मों",
+        popular: "लोकप्रिय फिल्मों",
+        topRated: "टॉप रेटेड फिल्मों",
+        upcoming: "आने वाली फिल्में",
+        action: "एक्शन फिल्मों",
+        comedy: "कॉमेडी फिल्में",
+        popularShows: "लोकप्रिय शो",
+        topRatedShows: "टॉप रेटेड शो",
+        airingToday: "आज प्रसारित",
+        onTheAir: "प्रसारण में",
 
         // Header
         home: "होम",
@@ -73,6 +89,10 @@ const languageConstants = {
         contactUs: "संपर्क करें",
         footerTitle: "सौगत दास द्वारा नेटफ्लिक्स क्लोन ( फ्रंटएंड डेवलपर )",
         footerSubtitle: "केवल सीखने के उद्देश्य से बनाया गया है।",
+
+        // Banner
+        play: "चलाएँ",
+        moreInfo: "अधिक जानकारी",
     },
 
     bengali: {
@@ -88,10 +108,16 @@ const languageConstants = {
         noResults: (query) => `"${query}" এর জন্য কোনো ফলাফল পাওয়া যায়নি`,
 
         // Browse Page
-        trending: "ট্রেন্ডিং",
-        popular: "জনপ্রিয়",
-        topRated: "সর্বোচ্চ রেটেড",
-        upcoming: "শীঘ্রই আসছে",
+        trending: "ট্রেন্ডিং সিনেমা",
+        popular: "জনপ্রিয় সিনেমা",
+        topRated: "সর্বোচ্চ রেটেড সিনেমা",
+        upcoming: "আসন্ন সিনেমা",
+        action: "অ্যাকশন মুভি",
+        comedy: "কমেডি সিনেমা",
+        popularShows: "জনপ্রিয় শো",
+        topRatedShows: "সর্বোচ্চ রেটেড শো",
+        airingToday: "আজ প্রচারিত",
+        onTheAir: "চলমান শো",
 
         // Header
         home: "হোম",
@@ -111,6 +137,11 @@ const languageConstants = {
         contactUs: "যোগাযোগ করুন",
         footerTitle: "সৌগত দাসের তৈরি নেটফ্লিক্স ক্লোন ( ফ্রন্টএন্ড ডেভেলপার )",
         footerSubtitle: "শুধুমাত্র শেখার উদ্দেশ্যে তৈরি।",
+
+        // Banner
+        play: "চালান",
+        moreInfo: "আরও তথ্য",
+        descriptionNotAvailable: "বিবরণ পাওয়া যায়নি",
     },
 };
 

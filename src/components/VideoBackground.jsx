@@ -10,7 +10,6 @@ const VideoBackground = ({ movieId }) => {
 
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden">
-      
       <div
         className="absolute top-1/2 left-1/2 lg:scale-200 scale-150 sm:scale-200
       max-sm:w-[177.78vh] sm:w-full max-sm:h-[100vh] h-full
@@ -19,11 +18,11 @@ const VideoBackground = ({ movieId }) => {
       >
         <iframe
           className="w-full h-full pointer-events-none"
-          src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailerKey}&rel=0&playsinline=1`}
+          src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&mute=1&controls=0&disablekb=1&modestbranding=1&loop=1&playlist=${trailerKey}&rel=0&playsinline=1`}
           title="Movie Trailer"
           allow="autoplay; encrypted-media"
           allowFullScreen
-        ></iframe>
+        />
       </div>
 
       {/* Overlay */}

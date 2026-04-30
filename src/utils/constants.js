@@ -12,3 +12,9 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "en", name: "English" },
   { identifier: "hindi", name: "हिन्दी" },
   { identifier: "bengali", name: "বাংলা" }];
+
+export const tmdbLanguageMap = {
+  en: "en-US",
+  hindi: "hi-IN",
+  bengali: "bn-BD",
+};
