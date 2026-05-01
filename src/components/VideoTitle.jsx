@@ -14,12 +14,12 @@ const VideoTitle = ({ title, description }) => {
       justify-center px-6 md:px-16 bg-gradient-to-r
      from-black/80 via-black/40 to-transparent text-white"
     >
-      <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold max-w-xl">
+      <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold max-w-xl">
         {title}
       </h1>
 
       <p
-        className="mt-4 text-sm md:text-[16px] lg:text-lg max-w-lg line-clamp-3
+        className="mt-4 md:mt-5 text-sm md:text-[16px] lg:text-lg max-w-lg line-clamp-3
        text-gray-200"
       >
         {finalDescription}

@@ -4,6 +4,8 @@ import Login from "../pages/Login";
 import Browse from "../pages/Browse";
 import ProtectedRoute from "../components/ProtectedRoute";
 import Search from "../pages/Search";
+import MovieDetails from "../components/MovieDetails";
+import TvDetails from "../components/TvDetails";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,22 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Search />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "movie/:id",
+        element: (
+          <ProtectedRoute>
+            <MovieDetails />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "tv/:id",
+        element: (
+          <ProtectedRoute>
+            <TvDetails />
           </ProtectedRoute>
         ),
       },

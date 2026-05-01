@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import InnerContainer from "../components/InnerContainer";
 import MainContainer from "../components/MainContainer";
 import useTmdb from "../hooks/usetmdb";
@@ -13,8 +14,11 @@ import {
   addTopRatedTvShows,
   addUpComingMovies,
 } from "../store/movieSlice";
+import LoadingScreen from "../components/LoadingScreen";
 
 const Browse = () => {
+  const movies = useSelector((store) => store.movies.nowPlayingMoviesList);
+
   useTmdb("movie/now_playing?page=1", addNowPlayingMovies);
   useTmdb("movie/popular?page=1", addPopularMovies);
   useTmdb("movie/top_rated?page=1", addTopRatedMovies);
@@ -26,6 +30,8 @@ const Browse = () => {
   useTmdb("tv/top_rated?page=1", addTopRatedTvShows);
   useTmdb("tv/airing_today?page=1", addAiringTodayTvShows);
   useTmdb("tv/on_the_air?page=1", addOnTheAirTvShows);
+
+  if(!movies) return <LoadingScreen/>
 
   return (
     <div className="text-white">

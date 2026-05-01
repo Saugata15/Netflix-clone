@@ -1,12 +1,13 @@
 import { useSelector } from "react-redux";
 import useMovieTrailer from "../hooks/useMovieTrailer";
+import LoadingScreen from "./LoadingScreen";
 
 const VideoBackground = ({ movieId }) => {
   const trailerKey = useSelector((store) => store.movies.trailerVideo);
 
   useMovieTrailer(movieId);
 
-  if (!trailerKey) return null;
+  if (!trailerKey) return <LoadingScreen/>;
 
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden">

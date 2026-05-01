@@ -7,11 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../src/store/userSlice";
 import Footer from "./components/Footer";
 import LoadingScreen from "./components/LoadingScreen";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
   const dispatch = useDispatch();
-  const [authLoading, setAuthLoading] = useState(true);
-  const movies = useSelector((store) => store.movies.nowPlayingMoviesList);
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
+  const user = useSelector(store=>store.user.user)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -21,21 +22,22 @@ const App = () => {
       } else {
         dispatch(removeUser());
       }
-      setAuthLoading(false);
+      setIsAuthLoading(false);
     });
 
     return () => unsubscribe();
   }, [dispatch]);
 
-  if (authLoading) {
+  if (isAuthLoading) {
     return <LoadingScreen />;
   }
 
   return (
     <div>
+      <ScrollToTop/>
       <Header />
       <Outlet />
-      {movies && <Footer />}
+      {user && <Footer />}
     </div>
   );
 };
