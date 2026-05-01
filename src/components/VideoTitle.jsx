@@ -1,13 +1,19 @@
 import { Play, Info } from "lucide-react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import languageConstants from "../utils/languageConstants";
 import { useNavigate } from "react-router-dom";
+import { playMovie } from "../store/movieSlice";
 
 const VideoTitle = ({ title, description, movieId }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const langKey = useSelector((store) => store.language.currentLanguage);
   const text = languageConstants[langKey];
   const finalDescription = description || text.descriptionNotAvailable;
+
+  const handlePlay = () => {
+    dispatch(playMovie());
+  };
 
   return (
     <div
@@ -32,6 +38,7 @@ const VideoTitle = ({ title, description, movieId }) => {
           className="flex items-center gap-2 bg-white text-black font-bold
           px-5 md:px-6 py-2.5 md:py-3 rounded hover:bg-gray-200
           transition-all duration-200 cursor-pointer shadow-lg"
+          onClick={handlePlay}
         >
           <Play size={20} className="max-sm:w-4 max-sm:h-4" fill="black" />
           <span>{text.play}</span>
