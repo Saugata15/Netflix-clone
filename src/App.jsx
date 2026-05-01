@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
@@ -8,11 +8,14 @@ import { addUser, removeUser } from "../src/store/userSlice";
 import Footer from "./components/Footer";
 import LoadingScreen from "./components/LoadingScreen";
 import ScrollToTop from "./components/ScrollToTop";
+import { AnimatePresence, motion } from "framer-motion";
+import PageTransition from "./components/PageTransition";
 
 const App = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const [isAuthLoading, setIsAuthLoading] = useState(true);
-  const user = useSelector(store=>store.user.user)
+  const user = useSelector((store) => store.user.user);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -34,10 +37,18 @@ const App = () => {
 
   return (
     <div>
-      <ScrollToTop/>
-      <Header />
-      <Outlet />
-      {user && <Footer />}
+      {isAuthLoading ? (
+        <LoadingScreen />
+      ) : (
+        <>
+          <ScrollToTop />
+          <Header />
+          <AnimatePresence mode="wait" initial={false}>
+            <PageTransition location={location} />
+          </AnimatePresence>
+          {user && <Footer />}
+        </>
+      )}
     </div>
   );
 };

@@ -88,16 +88,16 @@ const Header = () => {
         ${showBg ? "bg-[#0d0d0d]" : "bg-transparent"}`}
       >
         {/* LEFT */}
-        <div className="flex items-center lg:text-sm sm:text-xs gap-2 lg:gap-6">
+        <div className="flex items-center lg:text-sm sm:text-sm gap-2 lg:gap-6">
           <img
             src={assets.Logo}
             alt="logo"
             onClick={() => navigate("/browse")}
-            className="lg:w-32 md:w-28 w-24 cursor-pointer"
+            className="md:w-32 sm:w-28 w-24 cursor-pointer"
           />
 
           {!isLoginPage && (
-            <nav className="hidden md:flex items-center lg:gap-5 gap-3">
+            <nav className="hidden md:flex items-center lg:gap-5 gap-5">
               {navItems.map((item) => (
                 <NavLink
                   key={item.path}
@@ -117,8 +117,8 @@ const Header = () => {
             {/* Language */}
             <div className="relative">
               <select
-                className="appearance-none bg-[#1a1a1a] border border-gray-600 text-white 
-                text-sm font-semibold rounded-md pl-4 max-sm:pl-3 pr-7 py-2 cursor-pointer"
+                className="appearance-none bg-[#1a1a1a] border border-gray-600 text-white py-2
+                text-sm font-semibold max-md:font-medium rounded-md pl-4 max-sm:pl-3 pr-7 cursor-pointer"
                 onChange={handleLanguage}
                 value={currentLanguage}
               >

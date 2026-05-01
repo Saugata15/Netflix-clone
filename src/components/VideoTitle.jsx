@@ -1,13 +1,14 @@
 import { Play, Info } from "lucide-react";
 import { useSelector } from "react-redux";
 import languageConstants from "../utils/languageConstants";
+import { useNavigate } from "react-router-dom";
 
-const VideoTitle = ({ title, description }) => {
+const VideoTitle = ({ title, description, movieId }) => {
+  const navigate = useNavigate();
   const langKey = useSelector((store) => store.language.currentLanguage);
   const text = languageConstants[langKey];
-  const finalDescription =
-  description || text.descriptionNotAvailable;
-  
+  const finalDescription = description || text.descriptionNotAvailable;
+
   return (
     <div
       className="absolute inset-0 z-20 flex flex-col
@@ -42,6 +43,7 @@ const VideoTitle = ({ title, description }) => {
          text-white font-semibold max-sm:font-medium px-6 md:px-7 py-2.5 md:py-3 rounded
          hover:bg-gray-400/70 transition-all duration-200
           cursor-pointer shadow-lg"
+          onClick={() => navigate(`/movie/${movieId}`)}
         >
           <Info size={20} />
           <span>{text.moreInfo}</span>

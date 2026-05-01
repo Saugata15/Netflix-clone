@@ -7,14 +7,14 @@ const VideoBackground = ({ movieId }) => {
 
   useMovieTrailer(movieId);
 
-  if (!trailerKey) return <LoadingScreen/>;
+  if (!trailerKey) return;
 
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden">
       <div
         className="absolute top-1/2 left-1/2 lg:scale-200 scale-150 sm:scale-200
       max-sm:w-[177.78vh] sm:w-full max-sm:h-[100vh] h-full
-      min-w-full sm:min-h-full sm:h-[100vh] md:w-[120%] md:h-[100vh] lg:h-[100vh] lg:w-full 
+      min-w-full sm:min-h-full sm:h-[100vh] md:w-[120%] md:h-screen lg:w-full 
       -translate-x-1/2 -translate-y-1/2"
       >
         <iframe

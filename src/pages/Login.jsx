@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import assets from "../assets/assets";
+import { Check } from "lucide-react";
 import { checkValidData } from "../utils/utils";
 import { auth } from "../utils/firebaseConfigue";
 import {
@@ -12,6 +13,7 @@ import { useSelector } from "react-redux";
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [passwordValue, setPasswordValue] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
 
   const navigate = useNavigate();
@@ -95,11 +97,43 @@ const Login = () => {
         <input
           ref={passwordRef}
           type="password"
+          value={passwordValue}
+          onChange={(e) => setPasswordValue(e.target.value)}
           placeholder="Password"
           className="w-full bg-gray-700 p-3 rounded outline-none max-sm:text-sm"
         />
 
         {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
+
+        {!isSignIn && (
+          <ul className="text-xs space-y-1 flex flex-wrap">
+            <li
+              className={`flex items-center pr-5 gap-1
+                ${passwordValue.length >= 8 ? "text-green-400" : "text-gray-400"}`}
+            >
+              <Check size={16} />
+              <span>At least 8 characters</span>
+            </li>
+            <li
+              className={`flex items-center gap-1
+                ${/[A-Z]/.test(passwordValue) ? "text-green-400" : "text-gray-400"}`}
+            >
+              <Check size={16} />
+              <span>One uppercase letter</span>
+            </li>
+            <li
+              className={`flex items-center gap-1
+                ${
+                  /[^A-Za-z0-9]/.test(passwordValue)
+                    ? "text-green-400"
+                    : "text-gray-400"
+                }`}
+            >
+              <Check size={16} />
+              <span>One special character</span>
+            </li>
+          </ul>
+        )}
 
         <button
           className="w-full bg-red-600 py-3 rounded font-semibold
