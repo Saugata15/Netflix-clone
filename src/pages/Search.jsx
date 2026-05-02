@@ -4,8 +4,12 @@ import { useSelector } from "react-redux";
 import languageConstants from "../utils/languageConstants";
 import { API_OPTIONS } from "../utils/constants";
 import MovieList from "../components/MovieList";
+import { getMovieSuggestions } from "../utils/gemini";
+import { searchMovieTMDB } from "../utils/tmdb";
+import SkeletonRow from "../components/SkeletonRow";
 
 const Search = () => {
+  const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [searched, setSearched] = useState(false);
@@ -15,26 +19,43 @@ const Search = () => {
     if (!searchText.trim()) return;
 
     try {
-      const response = await fetch(
-        "https://api.themoviedb.org/3/search/movie?query=" +
-          encodeURIComponent(searchText) +
-          "&include_adult=false&language=en-US&page=1",
-        API_OPTIONS,
+      setLoading(true);
+
+      const aiResult = await getMovieSuggestions(searchText);
+
+      const movieNames = aiResult
+        .split(",")
+        .map((m) => m.trim())
+        .filter(Boolean);
+
+      const moviePromises = movieNames.map(async (movie) => {
+        const results = await searchMovieTMDB(movie);
+        return {
+          title: movie,
+          movies: results,
+        };
+      });
+
+      const groupedResults = (await Promise.all(moviePromises)).filter(
+        (group) => group.movies?.length > 9,
       );
-      const data = await response.json();
-      setMovies(data.results);
+
+      setMovies(groupedResults);
       setSearched(true);
     } catch (err) {
       console.error(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    if (!query.trim()) return;
+    if (!query.trim() || query.length < 3) return;
 
     const timer = setTimeout(() => {
       handleSearch(query);
-    }, 500);
+    }, 800);
+
     return () => clearTimeout(timer);
   }, [query]);
 
@@ -81,7 +102,13 @@ const Search = () => {
       </div>
 
       <div className="mt-10 text-center">
-        {!searched ? (
+        {loading ? (
+          <div className="space-y-6">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <SkeletonRow key={index} />
+            ))}
+          </div>
+        ) : !searched ? (
           <div className="max-w-3xl mx-auto text-gray-500">
             <p>{text.emptyMessage}</p>
           </div>
@@ -90,7 +117,15 @@ const Search = () => {
             <p>{text.noResults(query)}</p>
           </div>
         ) : (
-          <MovieList title={text.searchSuccess} movies={movies} />
+          <div className="space-y-8">
+            {movies.map((group, index) => (
+              <MovieList
+                key={index}
+                title={group.title}
+                movies={group.movies}
+              />
+            ))}
+          </div>
         )}
       </div>
     </div>
