@@ -31,10 +31,6 @@ const App = () => {
     return () => unsubscribe();
   }, [dispatch]);
 
-  if (isAuthLoading) {
-    return <LoadingScreen />;
-  }
-
   return (
     <div>
       {isAuthLoading ? (

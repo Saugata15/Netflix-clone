@@ -1,9 +1,6 @@
-export const checkValidData = (emailRef, passwordRef) => {
-    const email = emailRef.current.value;
+export const checkValidData = (email, password) => {
 
     const isEmailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
-
-    const password = passwordRef.current.value;
 
     const isPasswordValid = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(password);
 

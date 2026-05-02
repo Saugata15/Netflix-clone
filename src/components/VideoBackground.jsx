@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import useMovieTrailer from "../hooks/useMovieTrailer";
 import { stopMovie } from "../store/movieSlice";
+import { X } from "lucide-react";
 
 const VideoBackground = ({ movieId }) => {
   const dispatch = useDispatch();
@@ -24,9 +25,9 @@ const VideoBackground = ({ movieId }) => {
         {/* CLOSE BUTTON */}
         <button
           onClick={() => dispatch(stopMovie())}
-          className="absolute top-10 right-9 text-white text-2xl"
+          className="absolute top-10 right-9 text-white text-2xl cursor-pointer"
         >
-          ✕
+          <X size={22} className="text-white" />
         </button>
       </div>
     );

@@ -10,7 +10,7 @@ const pageVariants = {
 const PageTransition = ({ location }) => {
   return (
     <motion.div
-      key={location.pathname} // 👈 important change
+      key={location.pathname} 
       variants={pageVariants}
       initial="initial"
       animate="animate"
