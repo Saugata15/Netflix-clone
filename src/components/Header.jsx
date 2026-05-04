@@ -29,7 +29,7 @@ const Header = () => {
     { path: "/shows", label: text.shows },
     { path: "/movies", label: text.movies },
     { path: "/new-popular", label: text.newPopular },
-    { path: "/mylist", label: text.myList },
+    { path: "/my-list", label: text.myList },
   ];
 
   const isLoginPage =

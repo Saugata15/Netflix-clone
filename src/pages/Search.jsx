@@ -62,7 +62,7 @@ const Search = () => {
   const text = languageConstants[langKey];
 
   return (
-    <div className="min-h-screen bg-[#0d0d0d] text-white px-4 sm:px-6 lg:px-12 pt-28">
+    <div className="min-h-screen bg-[#141414] text-white px-4 sm:px-6 lg:px-12 pt-28">
       {/* Heading */}
       <div className="max-w-3xl mx-auto text-center mb-8">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">{text.title}</h1>
@@ -79,8 +79,8 @@ const Search = () => {
             handleSearch(query);
           }}
         >
-          <div className="px-4 text-gray-400">
-            <SearchIcon size={20} />
+          <div className="px-2 sm:px-4 text-gray-400">
+            <SearchIcon size={20} className="max-sm:size-3.5" />
           </div>
 
           <input
@@ -88,13 +88,13 @@ const Search = () => {
             value={query}
             placeholder={text.placeholderText}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full bg-transparent outline-none px-2 py-4 text-sm 
+            className="w-full bg-transparent outline-none px-0 py-4 max-sm:py-3 text-[12px] 
             sm:text-base placeholder:text-gray-500"
           />
 
           <button
-            className="bg-red-600 hover:bg-red-700 px-5 sm:px-7 
-          py-4 font-medium transition-all duration-300"
+            className="bg-red-600 hover:bg-red-700 px-3 sm:px-7 
+          py-3 sm:py-4 font-medium transition-all duration-300 max-sm:text-[13px]"
           >
             {text.search}
           </button>

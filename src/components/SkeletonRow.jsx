@@ -1,10 +1,8 @@
 const SkeletonRow = () => {
   return (
     <div className="mb-8">
-      {/* Title skeleton */}
       <div className="h-6 w-40 bg-gray-700 rounded mb-4 animate-pulse"></div>
 
-      {/* Movie cards skeleton */}
       <div className="flex gap-4 overflow-hidden">
         {Array.from({ length: 8 }).map((_, index) => (
           <div

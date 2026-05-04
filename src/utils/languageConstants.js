@@ -45,6 +45,12 @@ const languageConstants = {
         // Banner
         play: "Play",
         moreInfo: "More Info",
+
+        // ComingSoon
+        comingSoonTitle: "🚧 Coming Soon",
+        comingSoonDescriptionStart: "The",
+        comingSoonDescriptionEnd: "page is under development.",
+        comingSoonSubtitle: "Stay tuned — something awesome is coming!",
     },
 
     hindi: {
@@ -93,6 +99,12 @@ const languageConstants = {
         // Banner
         play: "चलाएँ",
         moreInfo: "अधिक जानकारी",
+
+        // ComingSoon
+        comingSoonTitle: "🚧 जल्द आ रहा है",
+        comingSoonDescriptionStart: "",
+        comingSoonDescriptionEnd: "पेज अभी तैयार हो रहा है।",
+        comingSoonSubtitle: "कुछ शानदार आने वाला है!",
     },
 
     bengali: {
@@ -142,6 +154,12 @@ const languageConstants = {
         play: "চালান",
         moreInfo: "আরও তথ্য",
         descriptionNotAvailable: "বিবরণ পাওয়া যায়নি",
+
+        // ComingSoon
+        comingSoonTitle: "🚧 শীঘ্রই আসছে",
+        comingSoonDescriptionStart: "",
+        comingSoonDescriptionEnd: "পেজটি এখনো তৈরি হচ্ছে।",
+        comingSoonSubtitle: "অসাধারণ কিছু আসছে!",
     },
 };
 

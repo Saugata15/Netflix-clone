@@ -47,7 +47,7 @@ const TvDetails = () => {
       <div className="relative w-full h-[60vh] md:h-[75vh]">
         <img src={imageUrl} className="w-full h-full object-cover" />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black to-black/50" />
 
         <div className="absolute bottom-6 md:bottom-10 left-4 md:left-12 max-w-xl px-2">
           <h1 className="text-2xl md:text-5xl font-bold mb-2">

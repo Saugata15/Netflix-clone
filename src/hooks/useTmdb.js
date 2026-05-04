@@ -2,18 +2,18 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS, tmdbLanguageMap } from "../utils/constants";
 
-const useTmdb = (endpoint, actionCreator) => {
+const useTmdb = (endpoint, actionCreator, selectorFn) => {
   const dispatch = useDispatch();
 
-  const lang = useSelector((store) => store.language.currentLanguage);
+  const existingData = useSelector(selectorFn);
 
   useEffect(() => {
+    if (existingData && existingData.length > 0) return;
+
     const fetchData = async () => {
       try {
-        const separator = endpoint.includes("?") ? "&" : "?";
-
         const response = await fetch(
-          `https://api.themoviedb.org/3/${endpoint}${separator}language=${tmdbLanguageMap[lang]}`,
+          `https://api.themoviedb.org/3/${endpoint}`,
           API_OPTIONS
         );
 
@@ -26,7 +26,7 @@ const useTmdb = (endpoint, actionCreator) => {
     };
 
     fetchData();
-  }, [endpoint, lang, dispatch, actionCreator]);
+  }, [endpoint, dispatch, actionCreator, existingData]);
 };
 
 export default useTmdb;

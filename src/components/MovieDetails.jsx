@@ -21,7 +21,7 @@ const MovieDetails = () => {
   useEffect(() => {
     const fetchMovie = async () => {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?language=${tmdbLanguageMap[langKey]}`,
+        `https://api.themoviedb.org/3/movie/${id}`,
         API_OPTIONS,
       );
       const data = await response.json();
@@ -29,7 +29,7 @@ const MovieDetails = () => {
     };
 
     fetchMovie();
-  }, [id, langKey]);
+  }, [id]);
 
   if (!movie) return <NetflixLoader />;
 
@@ -47,8 +47,7 @@ const MovieDetails = () => {
         />
 
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black  to-black/50" />
 
         {/* Content */}
         <div className="absolute bottom-16 left-6 md:left-12 max-w-xl animate-[fadeIn_0.6s_ease-in]">

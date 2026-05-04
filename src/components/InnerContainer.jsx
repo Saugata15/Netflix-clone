@@ -9,7 +9,7 @@ const InnerContainer = () => {
   const text = languageConstants[langKey];
 
   return (
-    <div className="bg-black px-6 md:px-16 py-8 flex flex-col">
+    <div className="bg-[#141414] px-6 md:px-16 py-8 flex flex-col">
       <MovieList title={text.trending} movies={movies.nowPlayingMoviesList} />
       <MovieList title={text.popular} movies={movies.popularMoviesList} />
       <MovieList title={text.topRated} movies={movies.topRatedMoviesList} />

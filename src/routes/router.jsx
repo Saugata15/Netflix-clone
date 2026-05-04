@@ -6,6 +6,10 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import Search from "../pages/Search";
 import MovieDetails from "../components/MovieDetails";
 import TvDetails from "../components/TvDetails";
+import Movies from "../pages/Movies";
+import Shows from "../pages/Shows";
+import MyList from "../pages/MyList";
+import NewPopular from "../pages/NewPopular";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +29,38 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Browse />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "shows",
+        element: (
+          <ProtectedRoute>
+            <Shows />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "movies",
+        element: (
+          <ProtectedRoute>
+            <Movies />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "new-popular",
+        element: (
+          <ProtectedRoute>
+            <NewPopular />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "my-list",
+        element: (
+          <ProtectedRoute>
+            <MyList />
           </ProtectedRoute>
         ),
       },
