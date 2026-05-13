@@ -18,10 +18,12 @@ const MovieDetails = () => {
   const trailerKey = useSelector((store) => store.movies.trailerVideo);
   useMovieTrailer(id);
 
+  const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
   useEffect(() => {
     const fetchMovie = async () => {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}`,
+        `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`,
         API_OPTIONS,
       );
       const data = await response.json();

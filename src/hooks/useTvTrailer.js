@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { addTrailerVideo } from "../store/movieSlice";
 import { API_OPTIONS } from "../utils/constants";
 
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
 const useTvTrailer = (id) => {
   const dispatch = useDispatch();
 
@@ -16,7 +18,7 @@ const useTvTrailer = (id) => {
     const fetchTrailer = async () => {
       try {
         const res = await fetch(
-          `https://api.themoviedb.org/3/tv/${id}/videos`,
+          `https://api.themoviedb.org/3/tv/${id}/videos&api_key=${API_KEY}`,
           { ...API_OPTIONS, signal: controller.signal }
         );
         const data = await res.json();

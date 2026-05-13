@@ -9,6 +9,7 @@ const TvDetails = () => {
   const { id } = useParams();
   const [tv, setTv] = useState(null);
   const trailerKey = useSelector((store) => store.movies.trailerVideo);
+  const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
   useTvTrailer(id);
 
@@ -18,7 +19,7 @@ const TvDetails = () => {
     const fetchTv = async () => {
       try {
         const res = await fetch(
-          `https://api.themoviedb.org/3/tv/${id}`,
+          `https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}`,
           { ...API_OPTIONS, signal: controller.signal }
         );
         const data = await res.json();
