@@ -5,11 +5,11 @@ import OpenAI from "openai";
 
 dotenv.config();
 
-const app = express();
 const allowedDomains = [
   "https://netflix-gpt-saugata.web.app"
 ];
 
+const app = express();
 app.use(
   cors({
     origin: function (origin, callback) {
