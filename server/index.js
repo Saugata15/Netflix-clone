@@ -6,7 +6,28 @@ import OpenAI from "openai";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+const allowedDomains = [
+  "https://netflix-gpt-saugata.web.app"
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedDomains.indexOf(origin) === -1) {
+        var msg =
+          "The CORS policy for this site does not " +
+          "allow access from the specified Origin.";
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    preflightContinue: false,
+    optionsSuccessStatus: 200,
+  })
+);
 app.use(express.json());
 
 const client = new OpenAI({
