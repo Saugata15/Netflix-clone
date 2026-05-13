@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import InnerContainer from "../components/InnerContainer";
 import MainContainer from "../components/MainContainer";
-import useTmdb from "../hooks/usetmdb";
+import useTmdb from "../hooks/useTmdb";
 import {
   addActionMovies,
   addAiringTodayTvShows,

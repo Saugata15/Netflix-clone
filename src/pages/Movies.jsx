@@ -7,7 +7,7 @@ import {
   addPopularMovies,
   addUpComingMovies,
 } from "../store/movieSlice";
-import useTmdb from "../hooks/usetmdb";
+import useTmdb from "../hooks/useTmdb";
 import { useSelector } from "react-redux";
 import languageConstants from "../utils/languageConstants";
 import HeroBanner from "../components/HeroBanner";

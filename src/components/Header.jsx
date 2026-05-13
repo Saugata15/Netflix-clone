@@ -5,7 +5,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebaseConfigue";
 import { SUPPORTED_LANGUAGES } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { changeLanguage } from "../store/LanguageSlice";
+import { changeLanguage } from "../store/languageSlice";
 import languageConstants from "../utils/languageConstants";
 import { Menu, X } from "lucide-react";
 
